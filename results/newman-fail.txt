@@ -1,0 +1,151 @@
+newman
+
+F.CSA313 Lab 05 Fail
+
+❏ 01 - Happy зам
+↳ Setup - Идэвхтэй оюутан
+  PUT http://localhost:3000/students/B230000001 [200 OK, 178B, 53ms]
+
+↳ Setup - CS313
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 7ms]
+
+↳ Happy зам - Бүртгэл амжилттай
+  POST http://localhost:3000/registrations [201 Created, 202B, 4ms]
+  1. Status is 200
+  ✓  Result is OK
+
+❏ 02 - Идэвхгүй оюутан
+↳ Setup - Идэвхгүй оюутан
+  PUT http://localhost:3000/students/B230000002 [200 OK, 178B, 5ms]
+
+↳ Setup - CS313
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 5ms]
+
+↳ Идэвхгүй оюутан - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 198B, 4ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 03 - Байхгүй оюутан
+↳ Setup - CS313
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 5ms]
+
+↳ Байхгүй оюутан - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 192B, 4ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 04 - Байхгүй хичээл
+↳ Setup - Идэвхтэй оюутан
+  PUT http://localhost:3000/students/B230000004 [200 OK, 178B, 7ms]
+
+↳ Байхгүй хичээл - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 191B, 5ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 05 - Урьдач нөхцөл дутуу
+↳ Setup - CS201 үзээгүй оюутан
+  PUT http://localhost:3000/students/B230000005 [200 OK, 178B, 3ms]
+
+↳ Setup - CS313
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 3ms]
+
+↳ Урьдач нөхцөл дутуу - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 215B, 3ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 06 - Урьдач нөхцөлгүй хичээл
+↳ Setup - Хичээл үзээгүй оюутан
+  PUT http://localhost:3000/students/B230000006 [200 OK, 178B, 3ms]
+
+↳ Setup - CS314
+  PUT http://localhost:3000/courses/CS314 [200 OK, 178B, 3ms]
+
+↳ Урьдач нөхцөлгүй хичээл - Бүртгэл амжилттай
+  POST http://localhost:3000/registrations [201 Created, 202B, 3ms]
+  ✓  Status is 201
+  ✓  Result is OK
+
+❏ 07 - Зарим урьдач нөхцөл хангасан
+↳ Setup - Зөвхөн CS201 үзсэн оюутан
+  PUT http://localhost:3000/students/B230000007 [200 OK, 178B, 2ms]
+
+↳ Setup - CS315
+  PUT http://localhost:3000/courses/CS315 [200 OK, 178B, 3ms]
+
+↳ Зарим урьдач нөхцөл хангасан - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 215B, 3ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 08 - Оюутан ба хичээл хоёулаа байхгүй
+↳ Оюутан ба хичээл хоёулаа байхгүй - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 192B, 3ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 09 - Идэвхгүй оюутан, урьдач нөхцөл дутуу
+↳ Setup - Идэвхгүй оюутан
+  PUT http://localhost:3000/students/B230000010 [200 OK, 178B, 3ms]
+
+↳ Setup - CS316
+  PUT http://localhost:3000/courses/CS316 [200 OK, 178B, 2ms]
+
+↳ Идэвхгүй оюутан, урьдач нөхцөл дутуу - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [200 OK, 198B, 2ms]
+  ✓  Status is 200
+  ✓  Result matches expected error
+
+❏ 10 - studentID талбар дутуу
+↳ Setup - Идэвхтэй оюутан
+  PUT http://localhost:3000/students/B230000008 [200 OK, 178B, 3ms]
+
+↳ Setup - CS313
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 3ms]
+
+↳ studentID талбар дутуу - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [400 Bad Request, 202B, 3ms]
+  ✓  Status is 400
+  ✓  Result is ERROR_BAD_REQUEST
+
+❏ 11 - courseID талбар дутуу
+↳ Setup - Идэвхтэй оюутан
+  PUT http://localhost:3000/students/B230000009 [200 OK, 178B, 2ms]
+
+↳ Setup - CS313
+  PUT http://localhost:3000/courses/CS313 [200 OK, 178B, 3ms]
+
+↳ courseID талбар дутуу - Бүртгэл амжилтгүй
+  POST http://localhost:3000/registrations [400 Bad Request, 202B, 3ms]
+  ✓  Status is 400
+  ✓  Result is ERROR_BAD_REQUEST
+
+┌─────────────────────────┬─────────────────┬─────────────────┐
+│                         │        executed │          failed │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              iterations │               1 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│                requests │              29 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│            test-scripts │              11 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│      prerequest-scripts │               0 │               0 │
+├─────────────────────────┼─────────────────┼─────────────────┤
+│              assertions │              22 │               1 │
+├─────────────────────────┴─────────────────┴─────────────────┤
+│ total run duration: 585ms                                   │
+├─────────────────────────────────────────────────────────────┤
+│ total data received: 658B (approx)                          │
+├─────────────────────────────────────────────────────────────┤
+│ average response time: 5ms [min: 2ms, max: 53ms, s.d.: 9ms] │
+└─────────────────────────────────────────────────────────────┘
+
+  #  failure         detail                                                  
+                                                                             
+ 1.  AssertionError  Status is 200                                           
+                     expected response to have status code 200 but got 201   
+                     at assertion:0 in test-script                           
+                     inside "01 - Happy зам / Happy зам - Бүртгэл амжилттай" 
+exit=1

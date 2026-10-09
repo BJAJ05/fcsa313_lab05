@@ -58,7 +58,14 @@ Postman-д спецификацийг ажиллуулахад дараах үр
 
 ## Collection
 
-
+PASS:
 ```bash
 newman run lab05-collection.json 2>&1 | tee results/newman-pass.txt ; echo "exit=${PIPESTATUS[0]}" | tee -a results/newman-pass.txt
 ```
+
+FAIL:
+```bash
+newman run lab05-collection-fail.json 2>&1 | ansi2txt | tee results/newman-fail.txt ; echo "exit=${PIPESTATUS[0]}" | tee -a results/newman-fail.txt
+```
+
+Newman нь зарим текстийг өнгөтэй болгохдоо Unicode тэмдэгтийг зөв харуулж чадахгүй байсан тул ansi2txt ашигласан.
